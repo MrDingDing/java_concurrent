@@ -23,7 +23,6 @@ public class DeadLockTest {
                     System.out.println(Thread.currentThread().getName()+"拿到了a资源");
                   synchronized (b){
                       System.out.println(Thread.currentThread().getName()+"拿到了b资源");
-
                   }
                     System.out.println(Thread.currentThread().getName()+"释放了b资源");
                 }
@@ -33,17 +32,17 @@ public class DeadLockTest {
         Thread thread2 = new Thread(new Runnable() {
             //先拿A资源 后拿B资源
             public void run() {
-                synchronized (a){
-                    System.out.println(Thread.currentThread().getName()+"拿到了a资源");
-                    synchronized (b){
-                        System.out.println(Thread.currentThread().getName()+"拿到了b资源");
-
+                synchronized (b){
+                    System.out.println(Thread.currentThread().getName()+"拿到了b资源");
+                    synchronized (a){
+                        System.out.println(Thread.currentThread().getName()+"拿到了a资源");
                     }
-                    System.out.println(Thread.currentThread().getName()+"释放了b资源");
+                    System.out.println(Thread.currentThread().getName()+"释放了a资源");
                 }
-                System.out.println(Thread.currentThread().getName()+"释放了a资源");
+                System.out.println(Thread.currentThread().getName()+"释放了b资源");
             }
         });
-
+      thread1.start();
+      thread2.start();
     }
 }
