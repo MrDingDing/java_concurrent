@@ -4,7 +4,6 @@
  */
 public class DeadLockTest {
    class  Resource{
-
     }
     Resource a = new Resource();
     Resource b = new Resource();
