@@ -15,12 +15,16 @@ public class ThreadYieldTest {
                     break;
                 synchronized (Job.class) {
                     count++;
+                    System.out.println("线程" + Thread.currentThread().getName() + "进行自加，count值为:" + count);
                 }
-                System.out.println("线程" + Thread.currentThread().getName() + "进行自加，count值为:" + count);
                 if(count>=5&&count<=10)
       //              Thread.yield();
-                  if(Thread.currentThread().getName().equals("Thread-0")){
-                      Thread.yield();
+                  if(Thread.currentThread().getName().equals("Thread-0")) {
+                      try {
+                          Thread.currentThread().wait();
+                      } catch (InterruptedException e) {
+                          e.printStackTrace();
+                      }
                   }
 
             }
@@ -31,7 +35,7 @@ public class ThreadYieldTest {
         Job job = new Job();
         Thread thread1 = new Thread(job);
         Thread thread2 = new Thread(job);
-        thread1.setPriority(10);
+        thread1.setPriority(2);
         thread2.setPriority(1);
         thread1.start();
         thread2.start();
