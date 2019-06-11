@@ -1,4 +1,4 @@
-package threadyield;
+package com.my.threadyield;
 
 /**
  * @author blackjack
