@@ -1,4 +1,4 @@
-package com.my;
+package com.my.the_art_of_java_concurrency.unit1;
 
 /**
  * @author blackjack
